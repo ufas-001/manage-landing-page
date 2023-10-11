@@ -28,10 +28,10 @@ jobs:
       #     key: ${{ secrets.SSH_PRIVATE_KEY }}
       #     script: |
       #       ls
-      # - name: Deploy to Droplet
-      #   env:
-      #     host: ${{ secrets.DROPLET_IP }}
-      #     username: ${{ secrets.SSH_USERNAME }}
-      #   run: |
-      #       scp -o StrictHostKeyChecking=no -i ${{ secrets.PASS }} -r $GITHUB_WORKSPACE/package.json $username@$host:/root
+      - name: Deploy to Droplet
+        env:
+          host: ${{ secrets.DROPLET_IP }}
+          username: ${{ secrets.SSH_USERNAME }}
+        run: |
+            scp -o StrictHostKeyChecking=no -i key -r $GITHUB_WORKSPACE/package.json $username@$host:/root 
           
