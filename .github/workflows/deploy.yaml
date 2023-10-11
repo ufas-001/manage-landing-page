@@ -17,7 +17,7 @@ jobs:
       - name: Create a file
         run: |
           touch key
-          echo "${{ secrets.pass }}" >> key
+          echo "${{ secrets.PASS }}" >> key
           cat key
 
       # - name: SSH into DigitalOcean Droplet
