@@ -24,6 +24,16 @@ jobs:
         run: yarn build
       - name: list files
         run: ls
+
+      - name: SSH into DigitalOcean Droplet
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.DROPLET_IP }}
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            ls
+
       - name: Copy file to Digital Ocean droplet
         uses: appleboy/ssh-action@master
         with:
