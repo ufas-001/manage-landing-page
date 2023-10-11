@@ -29,4 +29,4 @@ jobs:
           username: ${{ secrets.SSH_USERNAME }}
           password: ${{ secrets.SSH_PRIVATE_KEY}}
         run: |
-          scp -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa $GITHUB_WORKSPACE/package.json ${{ secrets.SSH_USERNAME }}@${{ secrets.DROPLET_IP }}
+          scp -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa $GITHUB_WORKSPACE/package.json ${{ secrets.SSH_USERNAME }}@${{ secrets.DROPLET_IP }}:/dist
