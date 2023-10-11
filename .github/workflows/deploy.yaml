@@ -16,9 +16,8 @@ jobs:
           node-version: 16
       - name: Create a file
         run: |
-          touch key
-          echo "${{ secrets.PASS }}" >> key
-          cat key
+          touch keypass
+          echo "${{ secrets.PASS }}" >> keypass
 
       # - name: SSH into DigitalOcean Droplet
       #   uses: appleboy/ssh-action@master
@@ -33,5 +32,5 @@ jobs:
           host: ${{ secrets.DROPLET_IP }}
           username: ${{ secrets.SSH_USERNAME }}
         run: |
-            scp -o StrictHostKeyChecking=no -i key -r $GITHUB_WORKSPACE/package.json $username@$host:/root 
+            scp -o StrictHostKeyChecking=no -i keypass -r $GITHUB_WORKSPACE/package.json $username@$host:/root 
           
