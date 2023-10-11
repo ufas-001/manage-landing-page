@@ -31,4 +31,4 @@ jobs:
           username: ${{ secrets.SSH_USERNAME  }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
-            scp -i ~/.ssh/id_rsa /package.json username@167.99.142.132:/dist
+            scp -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa package.json username@hostname:/dist
