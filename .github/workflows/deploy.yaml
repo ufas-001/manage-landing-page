@@ -23,8 +23,9 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
             ls
-      - name: Create SSH key file
+      - name: Create SSH key directory and file
         run: |
+          mkdir -p ~/.ssh
           echo -n "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
 
