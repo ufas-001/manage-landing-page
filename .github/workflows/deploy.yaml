@@ -23,12 +23,15 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
             ls
+      - name: Create SSH key file
+        run: |
+          echo -n "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+
       - name: Deploy to Droplet
         env:
           host: ${{ secrets.DROPLET_IP }}
           username: ${{ secrets.SSH_USERNAME }}
         run: |
-            echo -n "${{ secrets.SSH_PRIVATE_KEY }}" > /ssh_key
-            chmod 600 /ssh_key
-            scp -o StrictHostKeyChecking=no -i /ssh_key -r $GITHUB_WORKSPACE/package.json $username@$host:/hello
+            scp -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa -r $GITHUB_WORKSPACE/package.json $username@$host:/hello
           
