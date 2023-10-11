@@ -29,4 +29,4 @@ jobs:
           username: ${{ secrets.SSH_USERNAME }}
           password: ${{ secrets.SSH_PRIVATE_KEY}}
         run: |
-            sshpass -p "$password" scp -o StrictHostKeyChecking=no -r $GITHUB_WORKSPACE/package.json $username@$host:/root/dist_test/
+            sshpass -p "$password" scp -o StrictHostKeyChecking=no -o PasswordAuthentication=yes -r $GITHUB_WORKSPACE/package.json $username@$host:/root/dist_test/
