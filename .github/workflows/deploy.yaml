@@ -25,13 +25,13 @@ jobs:
             ls
       - name: Create SSH key directory and file
         run: |
-          mkdir -p ~/.ssh
-          echo -n "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
-          chmod 600 ~/.ssh/id_rsa
+          mkdir -p $GITHUB_WORKSPACE/.ssh
+          echo -n "${{ secrets.SSH_PRIVATE_KEY }}" > $GITHUB_WORKSPACE$GITHUB_WORKSPACE$GITHUB_WORKSPACE/.ssh/id_rsa
+          chmod 600 $GITHUB_WORKSPACE/.ssh/id_rsa
       - name: Set up SSH key
         run: |
           eval `ssh-agent -s`
-          ssh-add ~/.ssh/id_rsa
+          ssh-add $GITHUB_WORKSPACE/.ssh/id_rsa
       - name: Deploy to Droplet
         env:
           host: ${{ secrets.DROPLET_IP }}
