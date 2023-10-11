@@ -28,11 +28,14 @@ jobs:
           mkdir -p ~/.ssh
           echo -n "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
-
+      - name: Set up SSH key
+        run: |
+          eval `ssh-agent -s`
+          ssh-add ~/.ssh/id_rsa
       - name: Deploy to Droplet
         env:
           host: ${{ secrets.DROPLET_IP }}
           username: ${{ secrets.SSH_USERNAME }}
         run: |
-            scp -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa -r $GITHUB_WORKSPACE/package.json $username@$host:/hello
+            scp -o StrictHostKeyChecking=no -r $GITHUB_WORKSPACE/package.json $username@$host:/hello
           
